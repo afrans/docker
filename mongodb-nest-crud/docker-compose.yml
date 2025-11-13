@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: "S3nh@F0rt3!"
+      MONGO_INITDB_DATABASE: mydb
+
+  backend:
+    build: ./backend
+    container_name: app-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://admin:S3nh%40F0rt3%21@mongo:27017/mydb?authSource=admin
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/usr/src/app:delegated
+      - /usr/src/app/node_modules
+    command: npm run start:dev
+
+volumes:
+  mongo-data:
