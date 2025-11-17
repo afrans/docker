@@ -10,7 +10,7 @@ Create repository in the github.com
 ```bash
  git init -b main
  git add .
- git commit -m "node.js projects"
+ git commit -m "docker projects"
  git remote add origin https://github.com/afrans/docker.git
  git push -u origin main
  ```
