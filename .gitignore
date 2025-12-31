@@ -1,0 +1,8 @@
+# PostgreSQL data (NUNCA versionar)
+postgree/data/
+
+# Logs e temporários
+*.log
+
+# Docker volumes locais
+**/data/
